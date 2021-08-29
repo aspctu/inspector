@@ -12,7 +12,7 @@ WS_URL = os.getenv('WS_URL')
 API_URL = os.getenv('API_URL')
 
 def get_file(filepath):
-    file = requests.get(f"{API_URL}/document", params={'filename': filepath})
+    file = requests.get(f"{API_URL}/document", params={'filepath': filepath})
     return file.content.splitlines()
 
 def find_command(line):
