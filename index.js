@@ -11,10 +11,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get("/document", (req, res) => {
-  if (!req.query.filename) {
-    return res.status(400).send("No filename was provided.");
+  if (!req.query.filepath) {
+    return res.status(400).send("No filepath was provided.");
   }
-  res.sendFile(req.query.filename);
+  res.sendFile(req.query.filepath);
 });
 
 app.post("/document", (req, res) => {
