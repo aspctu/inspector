@@ -6,10 +6,8 @@
   "change" : str of added text (changes) in file, 
   "fp": path of changed file
 }
-
-`inspector` also exposes routes to get the full contents of a file `GET /document` or `POST /document` to make changes to an existing document. 
-
 ```
+`inspector` also exposes routes to get the full contents of a file `GET /document` or `POST /document` to make changes to an existing document. 
 
 ### quickstart
 run `node index.js` with `.env` file populated
