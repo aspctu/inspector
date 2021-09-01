@@ -6,13 +6,14 @@
   "change" : str of added text (changes) in file, 
   "fp": path of changed file
 }
+```
 
 ### quickstart
 run `node index.js` with `.env` file populated
 
-```
 
 `inspector` also exposes an API service that allows clients to get the full contents of a file `GET /document` or `POST /document` to make changes to an existing document. 
+## API
 
 ### GET /document
 `GET /document` expects an absolute filepath as a URL query param like this: 
