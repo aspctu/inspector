@@ -1,10 +1,12 @@
 const chokidar = require("chokidar");
 const Diff = require("diff");
 const fs = require("fs");
-require("dotenv").config();
 const socket = require("./socket");
 
-var DIR_PATH = process.env.DIR_PATH;
+require("dotenv").config();
+
+const DIR_PATH = process.env.DIR_PATH;
+const IGNORE_FILES = JSON.parse(process.env.IGNORE_FILES);
 var READY = false;
 var FILESTATE = {};
 
@@ -13,13 +15,13 @@ const log = console.log.bind(console);
 function onAdd(path) {
   FILESTATE[path] = fs.readFileSync(path, "utf8");
   if (!READY) return;
-  let change = getChange(path);
-  if (change == -1) return;
-  socket.sendChange(change, path);
+  socket.sendAdd(path);
 }
 
 function onChange(path) {
   if (!READY) return;
+  
+  if (IGNORE_FILES.some(e => path.includes(e))) return
   let change = getChange(path);
   if (change == -1) return;
   socket.sendChange(change, path);

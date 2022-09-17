@@ -11,6 +11,17 @@ function sendChange(change, filepath) {
   });
 }
 
+function sendAdd(filepath) {
+  wss.clients.forEach(function each(client) {
+    if (client.readyState === ws.WebSocket.OPEN) {
+      client.send(
+        JSON.stringify({ type: "add", change: "", fp: filepath })
+      );
+    }
+  });
+}
+
+
 wss.on("connection", function connection(ws) {
   ws.on("message", function incoming(message) {
     log(message);
@@ -19,4 +30,5 @@ wss.on("connection", function connection(ws) {
 
 module.exports = {
   sendChange,
+  sendAdd
 };
